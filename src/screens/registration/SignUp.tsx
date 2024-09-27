@@ -81,39 +81,6 @@ const SignUp = () => {
     return true;
   };
 
-  // const registration = async () => {
-  //   if (!validTextInput()) return;
-  //   setLoading(true);
-
-  //   try {
-  //     const formData = qs.stringify({
-  //       email: email.trim(),
-  //       first_Name: first_Name.trim(),
-  //       last_Name: last_Name.trim(),
-  //       password: password,
-  //       password2: password,
-  //       type: 'HIRER',
-  //     });
-
-  //     const response = await axios.post(POST_CLIENT, formData, {
-  //       headers: {
-  //         'Content-Type': 'application/x-www-form-urlencoded',
-  //       },
-  //     });
-  //     navigation.navigate('Login');
-  //     Alert.alert('Error', 'Registration successfully');
-
-  //   } catch (error) {
-
-  //     if (error instanceof AxiosError) {
-  //       console.log('Server Response Error: ', error.response?.data);
-  //       Alert.alert('Error', error.response?.data || 'Something went wrong');
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const registration = async () => {
     if (!validTextInput()) return;
     setLoading(true);
