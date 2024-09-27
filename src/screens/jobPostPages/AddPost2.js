@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ScrollView,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Alert,
+  Animated,
 } from 'react-native';
 import styles from '../../them/Styles';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -15,6 +16,20 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 const AddPostSecondPage = () => {
   const route = useRoute();
   const {title, category} = route.params;
+
+  const lineWidth = useRef(new Animated.Value(0)).current;
+
+  const animateLine = () => {
+    Animated.timing(lineWidth, {
+      toValue: 100,
+      duration: 500,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    animateLine();
+  }, []);
 
   const [description, setdescription] = useState('');
 
@@ -40,6 +55,17 @@ const AddPostSecondPage = () => {
   return (
     <View style={styles.viewOuterContainer}>
       <View style={{marginTop: 15}}>
+        <View
+          style={{
+            borderWidth: 1,
+            height: 5,
+            borderRadius: 5,
+            marginTop: 5,
+            marginBottom: 15,
+          }}>
+          <Animated.View style={[styles.linestyle, {width: lineWidth}]} />
+        </View>
+
         <Text style={styles.txtCategory}>Job Description</Text>
         <ScrollView>
           <View style={styles.txtInputAbout}>
@@ -54,16 +80,7 @@ const AddPostSecondPage = () => {
           </View>
         </ScrollView>
       </View>
-      {/* <View style={{ marginVertical: 20 }}>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
-                    <TouchableOpacity onPress={handlePostBackPagePress} style={styles.BackBtn}>
-                        <Text style={styles.txtCategory}>Back</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handlePostPagePress} style={styles.touchSaveStyle}>
-                        <Text style={styles.txtSave}>Next: Skills</Text>
-                    </TouchableOpacity>
-                </View>
-            </View> */}
+
       <View style={styles.closedContainer}>
         <View style={styles.txtHourlyPayment}>
           <LinearGradient
@@ -111,7 +128,6 @@ AddPostSecondPage.Header = () => {
             style={styles.styleProfile}
           />
         </TouchableOpacity>
-        {/* <Text style={styles.txtHeader}>Post A Job</Text> */}
         <Text style={styles.txtHeadercolor}>Your Job Description</Text>
       </LinearGradient>
     </View>

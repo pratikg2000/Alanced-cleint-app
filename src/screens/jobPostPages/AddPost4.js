@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Animated,
 } from 'react-native';
 import styles from '../../them/Styles';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
@@ -25,18 +26,19 @@ const AddPostFourthPage = () => {
   const rate = rateType === 0 ? 'Hourly' : 'Fixed';
   const navigation = useNavigation();
 
-  // const handlePostPagePress = () => {
-  //   navigation.navigate('AddPostFifthPage', {
-  //     title: title,
-  //     category: category,
-  //     description: description,
-  //     skills_required: skills_required,
-  //     min_hourly_rate: min_hourly_rate,
-  //     max_hourly_rate: max_hourly_rate,
-  //     fixed_budget: fixed_budget,
-  //     rate: rate,
-  //   });
-  // };
+  const lineWidth = useRef(new Animated.Value(0)).current;
+
+  const animateLine = () => {
+    Animated.timing(lineWidth, {
+      toValue: 250,
+      duration: 500,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    animateLine();
+  }, []);
 
   const handlePostPagePress = () => {
     if (rateType === 0) {
@@ -86,6 +88,18 @@ const AddPostFourthPage = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
+      <View
+        style={{
+          borderWidth: 1,
+          height: 5,
+          borderRadius: 5,
+          marginTop: 10,
+          marginBottom: 15,
+          marginHorizontal: 15,
+        }}>
+        <Animated.View style={[styles.linestyle, {width: lineWidth}]} />
+      </View>
+
       <SegmentedControl
         values={['Hourly Rate', 'Fixed Budget']}
         selectedIndex={rateType}
@@ -243,7 +257,6 @@ AddPostFourthPage.Header = () => {
             style={styles.styleProfile}
           />
         </TouchableOpacity>
-        {/* <Text style={styles.txtHeader}>Post A Job</Text> */}
         <Text style={styles.txtHeadercolor}>Tell us about your budget</Text>
       </LinearGradient>
     </View>

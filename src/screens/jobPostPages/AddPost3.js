@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Text,
   View,
@@ -9,6 +9,7 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  Animated,
 } from 'react-native';
 import styles from '../../them/Styles';
 import LinearGradient from 'react-native-linear-gradient';
@@ -43,6 +44,20 @@ const AddPostThirdPage = ({navigation}) => {
   const [skillsRequired, setSkillsRequired] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const lineWidth = useRef(new Animated.Value(0)).current;
+
+  const animateLine = () => {
+    Animated.timing(lineWidth, {
+      toValue: 200,
+      duration: 500,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    animateLine();
+  }, []);
+
   const handleSelect = item => {
     setSkillsRequired(prev => {
       if (prev.includes(item.id)) {
@@ -59,7 +74,6 @@ const AddPostThirdPage = ({navigation}) => {
       return;
     }
 
-    // Navigate to the next page or perform another action
     console.log('Selected Items:', skillsRequired);
     navigation.navigate('AddPostFourthPage', {
       title: title,
@@ -69,7 +83,6 @@ const AddPostThirdPage = ({navigation}) => {
     });
   };
 
-  // Filter options based on search query
   const filteredOptions = searchQuery
     ? OPTIONS.filter(option =>
         option.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -78,6 +91,16 @@ const AddPostThirdPage = ({navigation}) => {
 
   return (
     <View style={styles.viewOuterContainer}>
+      <View
+        style={{
+          borderWidth: 1,
+          height: 5,
+          borderRadius: 5,
+          marginTop: 10,
+          marginBottom: 15,
+        }}>
+        <Animated.View style={[styles.linestyle, {width: lineWidth}]} />
+      </View>
       <View style={styles.multicontainer}>
         <Text style={styles.txtDaySkills}>Select Multiple Items</Text>
         <TextInput
@@ -88,7 +111,6 @@ const AddPostThirdPage = ({navigation}) => {
           onSelectionChange=""
           style={styles.searchBar}
         />
-        {/* Display selected options */}
         {skillsRequired.length > 0 && (
           <View style={styles.selectedContainer}>
             <Text style={styles.selectedTitle}>Selected Skills:</Text>
@@ -104,7 +126,6 @@ const AddPostThirdPage = ({navigation}) => {
             </View>
           </View>
         )}
-        {/* Display filtered options if there's a search query */}
         {searchQuery && filteredOptions.length > 0 && (
           <View style={styles.dropdownContainer}>
             <FlatList
@@ -157,7 +178,6 @@ AddPostThirdPage.Header = () => {
             style={styles.styleProfile}
           />
         </TouchableOpacity>
-        {/* <Text style={styles.txtHeader}>Post A Job</Text> */}
         <Text style={styles.txtHeadercolor}>Your Job Skills</Text>
       </LinearGradient>
     </View>

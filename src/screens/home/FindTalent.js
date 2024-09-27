@@ -660,7 +660,6 @@ const FindTalent = () => {
   };
 
   useEffect(() => {
-    // Fetch data with page number 1 when filters change
     setPage(1);
     fetchViewAllProject(
       1,
@@ -686,7 +685,7 @@ const FindTalent = () => {
     }
     debounceTimeout.current = setTimeout(() => {
       setSearchQuery(query);
-      setPage(1); // Reset page number to 1 on search query change
+      setPage(1);
       fetchViewAllProject(1, query);
     }, 500);
   };
@@ -705,7 +704,7 @@ const FindTalent = () => {
   const handleReload = () => {
     setError(null);
     setLoading(true);
-    setPage(1); // Reset page number to 1 on reload
+    setPage(1);
     fetchViewAllProject(
       1,
       searchQuery,
@@ -729,7 +728,7 @@ const FindTalent = () => {
     setFilteredProjectLevel(projectLevel);
     setFilteredProjectLang(projectLang);
     setFilteredProjectCity(projectCity);
-    setPage(1); // Reset page number to 1 on filter application
+    setPage(1);
     fetchViewAllProject(
       1,
       searchQuery,
@@ -755,7 +754,6 @@ const FindTalent = () => {
           end={{x: 1, y: 0}}
           style={{borderRadius: 10, padding: 1, marginVertical: 10}}>
           <View style={styles.postContractsAllJobConatiner}>
-            {/* <View style={styles.contractsAllJobConatiner}> */}
             <View style={styles.PostStyle}>
               <View style={styles.posterStyle}>
                 {image ? (

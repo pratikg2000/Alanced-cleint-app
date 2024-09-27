@@ -155,7 +155,6 @@ JobPost.Header = () => {
             style={styles.styleProfile}
           />
         </TouchableOpacity>
-        {/* <Text style={styles.txtHeader}>Post A Job</Text> */}
         <Text style={styles.txtHeadercolor}>Post A Job</Text>
       </LinearGradient>
     </View>

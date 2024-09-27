@@ -133,9 +133,7 @@ const InvitedFreelancer = () => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingBottom: 5,
-              }}>
-              {/* <Text style={styles.txtBudget}>Sent: {month}</Text> */}
-            </View>
+              }}></View>
           </View>
         </LinearGradient>
       </View>

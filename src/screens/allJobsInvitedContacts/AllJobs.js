@@ -46,9 +46,6 @@ const AllJob = () => {
           timeout: 3000,
         },
       );
-      // console.log(
-      //   `Fetching jobs from: ${GET_FREELANCER_HIRE_PROJECT}?page=${pageNumber}`,
-      // );
 
       const jobsWithDetails = await Promise.all(
         (response.data.data || response.data.results)?.map(async job => {
@@ -115,19 +112,12 @@ const AllJob = () => {
   const fetchProposal = async (jobId, token) => {
     try {
       const url = `${GET_FREELANCER_VIEW_BID}/${jobId}`;
-      // // console.log(
-      // //   `Fetching proposals from: ${GET_FREELANCER_VIEW_BID}/${jobId}`,
-      // );
-      // console.log(`Fetching invitations from: ${GET_FREELANCER_VIEW_INVITATIONS}/${jobId}`);
-
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         timeout: 3000,
       });
-
-      // console.log('Fetched Proposal Response:', response.data);
 
       if (response.data && Array.isArray(response.data.results)) {
         return response.data.results;
@@ -144,7 +134,6 @@ const AllJob = () => {
   const fetchInvitations = async (jobId, token) => {
     try {
       const url = `${GET_FREELANCER_VIEW_INVITATIONS}/${jobId}`;
-      // console.log('Fetching invitations with URL:', url);
 
       const response = await axios.get(url, {
         headers: {

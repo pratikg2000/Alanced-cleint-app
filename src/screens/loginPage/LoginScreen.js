@@ -122,6 +122,7 @@ const Login = ({navigation}) => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      await GoogleSignin.signOut();
       console.log('User Info:', JSON.stringify(userInfo, null, 2));
 
       const email = userInfo.data.user.email;

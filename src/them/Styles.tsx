@@ -548,6 +548,17 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     marginBottom: 10,
   },
+  linestyle: {
+    borderRadius: 1,
+    borderWidth: 0.5,
+    height: 4,
+    width: '44%',
+    // marginHorizontal: ,
+    borderColor: 'rgba(110, 89, 241, 1)',
+    opacity: 0.6,
+    marginBottom: 10,
+    backgroundColor: 'blue',
+  },
   SignUpGoogle: {
     flexDirection: 'row',
     marginTop: 20,
