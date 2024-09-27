@@ -14,11 +14,11 @@ function TabTopJobClient() {
           fontSize: 11,
         },
       }}>
-      {/* <TabTop.Screen
+      <TabTop.Screen
         name="AllJob"
         component={AllJob}
         options={{tabBarLabel: 'All Job'}}
-      /> */}
+      />
       <TabTop.Screen
         name="InvitedFreelancer"
         component={InvitedFreelancer}
