@@ -18,6 +18,7 @@ import {GOOGLE_LOGIN_URL, LOGIN_URl} from '../../utls/api/AlancedApi';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {resolver} from '../../../metro.config';
 
 const ACCESS_TOKEN_KEY = 'accessToken';
 const REFRESH_TOKEN_KEY = 'refreshToken';
@@ -49,31 +50,64 @@ const Login = ({navigation}) => {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
   };
+
   const handleSignIn = async () => {
     setLoading(true);
+
     try {
       const response = await axios.post(LOGIN_URl, {email, password});
-      const {access, refresh} = response.data.data.token;
-      if (access && refresh) {
-        await storeTokens(access, refresh);
-        setLoading(false);
-        navigation.navigate('HomeScreens');
-      } else {
-        throw new Error('Token not found');
+      console.log(response);
+
+      if (
+        response.status === 200 &&
+        response.data.message === 'Login Success'
+      ) {
+        const {type, token} = response.data.data;
+
+        if (type === 'HIRER') {
+          const {access, refresh} = token;
+
+          if (access && refresh) {
+            await storeTokens(access, refresh);
+
+            navigation.navigate('HomeScreens');
+          } else {
+            throw new Error('Token not found');
+          }
+        } else {
+          Alert.alert('Unauthorized user type');
+        }
       }
-    } catch (err) {
-      Alert.alert('check the email and password');
+    } catch (error) {
+      console.log('Error:', error);
+
+      if (error.response) {
+        if (error.response.status === 404) {
+          Alert.alert(
+            'Invalid credentials',
+            'Please check your email and password.',
+          );
+        } else {
+          Alert.alert(
+            'Error',
+            error.response.data.message ||
+              'Something went wrong. Please try again.',
+          );
+        }
+      } else {
+        Alert.alert('Error', `${error}`);
+      }
+    } finally {
       setLoading(false);
-      console.log('error', err);
     }
   };
+
   const checkEmailExists = async email => {
     try {
       const response = await axios.post(
         'https://api.alanced.com/account/check-email/',
         {email},
       );
-      // console.log("Response", response);
       return response.data;
     } catch (error) {
       console.error(
@@ -110,25 +144,46 @@ const Login = ({navigation}) => {
         console.log(responseData);
         const {access, refresh} = responseData.data.token;
 
-        if (access && refresh) {
-          await storeTokens(access, refresh);
-          setGoogleLoading(false);
-          navigation.navigate('HomeScreens');
-        } else {
-          Alert.alert('Error', 'Login failed. Token not found.');
+        if (
+          response.status === 200 &&
+          response.data.message === 'Login Success'
+        ) {
+          const {type, token} = response.data.data;
+
+          if (type === 'HIRER') {
+            const {access, refresh} = token;
+
+            if (access && refresh) {
+              await storeTokens(access, refresh);
+
+              navigation.navigate('HomeScreens');
+            } else {
+              throw new Error('Token not found');
+            }
+          } else {
+            throw new Error('Unauthorized user type');
+          }
         }
-      } else {
-        Alert.alert(
-          'Error',
-          "You're not a Registered user. Please sign up first.",
-        );
       }
     } catch (error) {
-      console.error(
-        'Login failed:',
-        error.response ? error.response.data : error.message,
-      );
-      Alert.alert('Error', 'Something went wrong. Please try again.');
+      console.log('Error:', error);
+      setGoogleLoading(false);
+      if (error.response) {
+        if (error.response.status === 404) {
+          Alert.alert(
+            'Invalid credentials',
+            'Please check your email and password.',
+          );
+        } else {
+          Alert.alert(
+            'Error2',
+            error.response.data.message ||
+              'Something went wrong. Please try again.',
+          );
+        }
+      } else {
+        Alert.alert('Unauthorized user type');
+      }
     } finally {
       setGoogleLoading(false);
     }
