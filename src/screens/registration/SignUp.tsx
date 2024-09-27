@@ -67,7 +67,10 @@ const SignUp = () => {
     const emailPattern =
       /^[\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\_\`\{\|\}\~]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!emailPattern.test(email.trim())) {
-      Alert.alert('Invalid email format');
+      Alert.alert(
+        'Invalid Email Format',
+        'Please enter a valid email address.',
+      );
       return false;
     }
     const passwordPattern = /^[A-Z][a-z]*@[0-9]+$/;
@@ -77,6 +80,39 @@ const SignUp = () => {
     }
     return true;
   };
+
+  // const registration = async () => {
+  //   if (!validTextInput()) return;
+  //   setLoading(true);
+
+  //   try {
+  //     const formData = qs.stringify({
+  //       email: email.trim(),
+  //       first_Name: first_Name.trim(),
+  //       last_Name: last_Name.trim(),
+  //       password: password,
+  //       password2: password,
+  //       type: 'HIRER',
+  //     });
+
+  //     const response = await axios.post(POST_CLIENT, formData, {
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //     });
+  //     navigation.navigate('Login');
+  //     Alert.alert('Error', 'Registration successfully');
+
+  //   } catch (error) {
+
+  //     if (error instanceof AxiosError) {
+  //       console.log('Server Response Error: ', error.response?.data);
+  //       Alert.alert('Error', error.response?.data || 'Something went wrong');
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const registration = async () => {
     if (!validTextInput()) return;
@@ -97,12 +133,25 @@ const SignUp = () => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
+
       navigation.navigate('Login');
-      Alert.alert('Error', 'Registration successfully');
+      Alert.alert('Success', 'Registration successfully completed!');
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log('Server Response Error: ', error.response?.data);
-        Alert.alert('Error', error.response?.data || 'Something went wrong');
+        const errorMessage = error.response?.data;
+        console.log('Error: ', errorMessage);
+
+        if (error.response?.status === 400) {
+          Alert.alert(
+            'Registration Failed',
+            'An account with this email already exists.',
+          );
+        }
+      } else {
+        Alert.alert(
+          'Error',
+          'Unable to connect to the server. Please check your internet connection.',
+        );
       }
     } finally {
       setLoading(false);
