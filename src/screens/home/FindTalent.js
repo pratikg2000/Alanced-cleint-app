@@ -600,7 +600,7 @@ const FindTalent = () => {
       const jobsResponse = await axios.get(fullURL, {
         headers: {Authorization: `Bearer ${token}`},
       });
-
+      // console.log('data', jobsResponse.data);
       const {results, next} = jobsResponse.data;
 
       if (!results || results.length === 0) {
@@ -742,6 +742,13 @@ const FindTalent = () => {
     toggleSidebar();
   };
 
+  const DetailsNavigationz = item => {
+    console.log('id', item.id);
+    navigation.navigate('ViewDetails', {
+      id: item.id,
+    });
+  };
+
   const renderItem = ({item}) => {
     const image = item.images_logo
       ? `https://www.api.alanced.com/${item.images_logo}`
@@ -821,7 +828,9 @@ const FindTalent = () => {
                   start={{x: 0, y: 0}}
                   end={{x: 1, y: 0}}
                   style={{borderRadius: 5, padding: 1}}>
-                  <TouchableOpacity style={styles.BackBtnLiner}>
+                  <TouchableOpacity
+                    style={styles.BackBtnLiner}
+                    onPress={() => DetailsNavigationz(item)}>
                     <Text style={styles.txtCategoryLiner}>
                       View More Details
                     </Text>
@@ -839,7 +848,6 @@ const FindTalent = () => {
               </View>
             </View>
           </View>
-          {/* </View> */}
         </LinearGradient>
       </View>
     );

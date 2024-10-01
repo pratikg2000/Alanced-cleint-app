@@ -27,3 +27,18 @@ export const GOOGLE_LOGIN_URL = baseURL + 'account/google-login/';
 
 export const FREELANCER_INVITED_FREELANCER =
   baseURL + 'freelance/View-all/invited-freelancers';
+
+export const ACCOUNT_FREEELANCER = baseURL + 'account/freelancer/profile/view';
+
+export const FREELANCER_EMPLOYMENT =
+  baseURL + 'freelance/View-all/Freelancer/Employment';
+
+export const FREELANCER_REVIEW = baseURL + 'freelance/View-all/Review';
+
+export const FREELANCER_SELF_PROJECT =
+  baseURL + 'freelance/View-all/Freelancer/Self-Project';
+
+// https://www.api.alanced.com/freelance/View-all/Freelancer/Self-Project/86?page=1
+
+// https://www.api.alanced.com/freelance/View-all/Freelancer/Employment/4
+// https://www.api.alanced.com/freelance/View-all/Review/4

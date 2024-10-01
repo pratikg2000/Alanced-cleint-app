@@ -1434,6 +1434,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
   },
+  postEmploymentDataConatiner: {
+    // borderWidth: 1,
+    // marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderColor: 'rgba(210, 212, 233, 1)',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   profileImageNameContainer: {
     flexDirection: 'row',
     // marginTop: 20,
@@ -1922,6 +1934,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderColor: '#ddd',
+    borderWidth: 1,
   },
 });
 
