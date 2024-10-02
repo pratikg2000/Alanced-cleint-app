@@ -1438,7 +1438,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // marginVertical: 10,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     borderColor: 'rgba(210, 212, 233, 1)',
     backgroundColor: 'white',
     borderRadius: 10,

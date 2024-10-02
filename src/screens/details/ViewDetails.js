@@ -54,10 +54,16 @@ const ViewDetails = () => {
       // console.log('response', response.data);
     } catch (error) {
       if (error.response) {
-        console.log('Error status code1:', error.response.status);
-        console.log('Error response data1:', error.response.data);
+        console.log(
+          'Error status code for FreelanceProfile:',
+          error.response.status,
+        );
+        console.log(
+          'Error response data for FreelanceProfile:',
+          error.response.data,
+        );
       } else {
-        console.log('Error message1:', error.message);
+        console.log('Error message for FreelanceProfile:', error.message);
       }
     } finally {
       setLoading(false);
@@ -84,10 +90,16 @@ const ViewDetails = () => {
       // console.log('response', response.data);
     } catch (error) {
       if (error.response) {
-        console.log('Error status code1:', error.response.status);
-        console.log('Error response data1:', error.response.data);
+        console.log(
+          'Error status code for EmploymentData:',
+          error.response.status,
+        );
+        console.log(
+          'Error response data for EmploymentData:',
+          error.response.data,
+        );
       } else {
-        console.log('Error message1:', error.message);
+        console.log('Error message for EmploymentData:', error.message);
       }
     } finally {
       setLoading(false);
@@ -113,10 +125,10 @@ const ViewDetails = () => {
       // console.log('response', response.data);
     } catch (error) {
       if (error.response) {
-        console.log('Error status code1:', error.response.status);
-        console.log('Error response data1:', error.response.data);
+        console.log('Error status code for ViewData:', error.response.status);
+        console.log('Error response data for ViewData:', error.response.data);
       } else {
-        console.log('Error message1:', error.message);
+        console.log('Error message for ViewData:', error.message);
       }
     } finally {
       setLoading(false);
@@ -147,13 +159,19 @@ const ViewDetails = () => {
       }));
 
       setPortfolioData(portfolioData);
-      console.log('response', portfolioData);
+      // console.log('response', portfolioData);
     } catch (error) {
       if (error.response) {
-        console.log('Error status code:', error.response.status);
-        console.log('Error response data:', error.response.data);
+        console.log(
+          'Error status code for PortfolioUrl:',
+          error.response.status,
+        );
+        console.log(
+          'Error response data for PortfolioUrl:',
+          error.response.data,
+        );
       } else {
-        console.log('Error message:', error.message);
+        console.log('Error message for PortfolioUrl:', error.message);
       }
     } finally {
       setLoading(false);
@@ -297,15 +315,35 @@ const ViewDetails = () => {
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           style={{borderRadius: 10, padding: 1, marginVertical: 10}}>
-          <View style={styles.postEmploymentDataConatiner}>
-            <Text style={{color: 'grey'}}>Experience Level: </Text>
-            <Text style={{color: '#47515e', fontWeight: '500'}}>
-              {data.experience_level || 'NA'}
-            </Text>
+          <View style={styles.postContractsAllJobConatiner}>
+            <View style={styles.postEmploymentDataConatiner}>
+              <Text style={{color: 'grey'}}>Experience Level: </Text>
+              <Text style={{color: '#47515e', fontWeight: '500'}}>
+                {data.experience_level || 'NA'}
+              </Text>
+            </View>
+            <View style={styles.postEmploymentDataConatiner}>
+              <Text style={{color: 'grey'}}>Category: </Text>
+              <Text style={{color: '#47515e', fontWeight: '500'}}>
+                {data.category || 'NA'}
+              </Text>
+            </View>
+            <View style={styles.postEmploymentDataConatiner}>
+              <Text style={{color: 'grey'}}>Hourly Rate: </Text>
+              <Text style={{color: '#47515e', fontWeight: '500'}}>
+                ${data.hourly_rate || 'NA'}/hr
+              </Text>
+            </View>
+            <View style={styles.postEmploymentDataConatiner}>
+              <Text style={{color: 'grey'}}>Educations: </Text>
+              <Text style={{color: '#47515e', fontWeight: '500'}}>
+                {data.qualification || 'NA'}
+              </Text>
+            </View>
           </View>
         </LinearGradient>
 
-        <LinearGradient
+        {/* <LinearGradient
           colors={['#0909E9', '#00D4FF']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
@@ -316,9 +354,9 @@ const ViewDetails = () => {
               {data.category || 'NA'}
             </Text>
           </View>
-        </LinearGradient>
+        </LinearGradient> */}
 
-        <LinearGradient
+        {/* <LinearGradient
           colors={['#0909E9', '#00D4FF']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
@@ -329,9 +367,9 @@ const ViewDetails = () => {
               ${data.hourly_rate || 'NA'}/hr
             </Text>
           </View>
-        </LinearGradient>
+        </LinearGradient> */}
 
-        <LinearGradient
+        {/* <LinearGradient
           colors={['#0909E9', '#00D4FF']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
@@ -342,7 +380,7 @@ const ViewDetails = () => {
               {data.qualification || 'NA'}
             </Text>
           </View>
-        </LinearGradient>
+        </LinearGradient> */}
 
         <LinearGradient
           colors={['#0909E9', '#00D4FF']}
