@@ -1444,6 +1444,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  postEmploymentDataConatinerRating: {
+    // borderWidth: 1,
+    // marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderColor: 'rgba(210, 212, 233, 1)',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   profileImageNameContainer: {
@@ -1500,6 +1511,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginHorizontal: 10,
   },
+
   imagePost: {
     width: 60,
     height: 60,
@@ -1941,6 +1953,32 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     borderColor: '#ddd',
     borderWidth: 1,
+  },
+  noImageText: {
+    fontSize: 14,
+    color: '#999',
+    marginVertical: 5,
+  },
+  noPortfolioText: {
+    fontSize: 16,
+    color: '#999',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  // imageStylePortfolio: {
+  //   width: 200,
+  //   height: 150,
+  //   // borderRadius: 50,
+  //   // marginHorizontal: 10,
+  //   // alignContent: 'center',
+  //   alignItems: 'center',
+  // },
+  imageStylePortfolio: {
+    width: '100%',
+    height: 250,
+    alignSelf: 'center', // This will center the image horizontally
+    resizeMode: 'cover', // Ensures the image covers the container completely
+    borderRadius: 20,
   },
 });
 

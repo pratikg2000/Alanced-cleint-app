@@ -742,7 +742,7 @@ const FindTalent = () => {
     toggleSidebar();
   };
 
-  const DetailsNavigationz = item => {
+  const DetailsNavigation = item => {
     console.log('id', item.id);
     navigation.navigate('ViewDetails', {
       id: item.id,
@@ -830,7 +830,7 @@ const FindTalent = () => {
                   style={{borderRadius: 5, padding: 1}}>
                   <TouchableOpacity
                     style={styles.BackBtnLiner}
-                    onPress={() => DetailsNavigationz(item)}>
+                    onPress={() => DetailsNavigation(item)}>
                     <Text style={styles.txtCategoryLiner}>
                       View More Details
                     </Text>

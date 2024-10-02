@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {
   ACCOUNT_FREEELANCER,
   FREELANCER_EMPLOYMENT,
@@ -27,9 +27,10 @@ const ViewDetails = () => {
   const [data, setData] = useState(null);
   const [reViewData, setReViewData] = useState(null);
   const [employmentData, setEmploymentData] = useState(null);
-  const [PortfolioData, setPortfolioData] = useState(null);
+  const [portfolioData, setPortfolioData] = useState([]);
   const [showAllReviews, setShowAllReviews] = useState(false);
 
+  const navigation = useNavigation();
   const {id} = route.params;
   const maxReviewsToShow = 3;
 
@@ -137,14 +138,22 @@ const ViewDetails = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setPortfolioData(response.data);
-      console.log('response', response.data);
+
+      const portfolioData = response.data.results.map(item => ({
+        ...item,
+        imageUrlPortfolio: item.images_logo
+          ? `https://www.api.alanced.com${item.images_logo}`
+          : null, // Handle null or missing image
+      }));
+
+      setPortfolioData(portfolioData);
+      console.log('response', portfolioData);
     } catch (error) {
       if (error.response) {
-        console.log('Error status code1:', error.response.status);
-        console.log('Error response data1:', error.response.data);
+        console.log('Error status code:', error.response.status);
+        console.log('Error response data:', error.response.data);
       } else {
-        console.log('Error message1:', error.message);
+        console.log('Error message:', error.message);
       }
     } finally {
       setLoading(false);
@@ -228,6 +237,18 @@ const ViewDetails = () => {
   const imageUrl = data.images_logo
     ? `https://www.api.alanced.com/${data.images_logo}`
     : '';
+
+  const handleDetailsPortfolioNavigation = item => {
+    console.log('image', item.imageUrlPortfolio);
+    navigation.navigate('DetailsPortfolio', {
+      project_title: item.project_title,
+      skills: item.skills_used,
+      category: item.category,
+      project_description: item.project_description,
+      project_link: item.project_link,
+      imageUrlPortfolio: item.imageUrlPortfolio,
+    });
+  };
 
   return (
     <ScrollView>
@@ -449,7 +470,6 @@ const ViewDetails = () => {
             <Text style={styles.txtLoaction}>Reviews</Text>
             {reViewData && reViewData.data && reViewData.data.length > 0 ? (
               <>
-                {/* Display limited reviews initially or all reviews based on the showAllReviews state */}
                 {reViewData.data
                   .slice(
                     0,
@@ -466,7 +486,7 @@ const ViewDetails = () => {
                           padding: 1,
                           marginVertical: 10,
                         }}>
-                        <View style={styles.postEmploymentDataConatiner}>
+                        <View style={styles.postEmploymentDataConatinerRating}>
                           <View>
                             <Text style={{fontWeight: 'bold'}}>
                               {review.Project_Name}
@@ -476,14 +496,10 @@ const ViewDetails = () => {
                             {renderStars(review.rating)}
                           </View>
                         </View>
-                        {/* <View style={{flexDirection: 'row', marginTop: 5}}>
-                          {renderStars(review.rating)}
-                        </View> */}
                       </LinearGradient>
                     </View>
                   ))}
 
-                {/* Show "See More" button if there are more than the maximum reviews to show */}
                 {reViewData.data.length > maxReviewsToShow &&
                   !showAllReviews && (
                     <TouchableOpacity onPress={() => setShowAllReviews(true)}>
@@ -498,7 +514,6 @@ const ViewDetails = () => {
                     </TouchableOpacity>
                   )}
 
-                {/* Show "Show Less" button if all reviews are displayed */}
                 {showAllReviews && (
                   <TouchableOpacity onPress={() => setShowAllReviews(false)}>
                     <Text
@@ -514,6 +529,46 @@ const ViewDetails = () => {
               </>
             ) : (
               <Text style={{color: 'grey'}}>No reviews available</Text>
+            )}
+          </View>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={['#0909E9', '#00D4FF']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          style={{borderRadius: 10, padding: 1, marginVertical: 10}}>
+          <View style={styles.postContractsAllJobConatiner}>
+            <Text style={styles.txtLoaction}>Portfolio</Text>
+            {portfolioData.length > 0 ? (
+              portfolioData.map(item => (
+                <TouchableOpacity
+                  key={item.project_id}
+                  onPress={() => handleDetailsPortfolioNavigation(item)}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      marginVertical: 10,
+                      color: 'blue',
+                      textDecorationLine: 'underline',
+                    }}>
+                    {item.project_title}
+                  </Text>
+
+                  {item.imageUrlPortfolio ? (
+                    <Image
+                      source={{uri: item.imageUrlPortfolio}}
+                      style={styles.imageStylePortfolio}
+                    />
+                  ) : (
+                    <Text style={styles.noImageText}>No image available</Text>
+                  )}
+                </TouchableOpacity>
+              ))
+            ) : (
+              <Text style={{fontWeight: 'bold'}}>
+                Portfolio data is currently unavailable.
+              </Text>
             )}
           </View>
         </LinearGradient>

@@ -14,6 +14,7 @@ import AddPostFifthPage from '../screens/jobPostPages/AddPost5';
 import ViewProposal from '../screens/allJobsInvitedContacts/ViewProposal';
 import ResetPassword from '../screens/resetPassword/ResetPassword';
 import ViewDetails from '../screens/details/ViewDetails';
+import DetailsPortfolio from '../screens/viewDetailsPortfolio/DetailsPortfolio';
 
 const Stack = createNativeStackNavigator();
 
@@ -78,7 +79,12 @@ const ClientNavigation = () => {
       <Stack.Screen
         name="ViewDetails"
         component={ViewDetails}
-        options={{headerShown: false}}
+        // options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailsPortfolio"
+        component={DetailsPortfolio}
+        // options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
