@@ -19,6 +19,7 @@ import {
 } from '../../utls/api/AlancedApi';
 import styles from '../../them/Styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import LinearGradient from 'react-native-linear-gradient';
 
 const ViewDetails = () => {
@@ -526,7 +527,7 @@ const ViewDetails = () => {
                         }}>
                         <View style={styles.postEmploymentDataConatinerRating}>
                           <View>
-                            <Text style={{fontWeight: 'bold'}}>
+                            <Text style={{fontWeight: 'bold', color: 'grey'}}>
                               {review.Project_Name}
                             </Text>
                           </View>
@@ -604,7 +605,7 @@ const ViewDetails = () => {
                 </TouchableOpacity>
               ))
             ) : (
-              <Text style={{fontWeight: 'bold'}}>
+              <Text style={{fontWeight: 'bold', color: 'grey'}}>
                 Portfolio data is currently unavailable.
               </Text>
             )}
@@ -612,6 +613,31 @@ const ViewDetails = () => {
         </LinearGradient>
       </View>
     </ScrollView>
+  );
+};
+
+ViewDetails.Header = () => {
+  const navigation = useNavigation();
+  handleProfilePress = () => {
+    navigation.goBack();
+  };
+  return (
+    <View style={styles.profileContainer}>
+      <LinearGradient
+        colors={['#0909E9', '#00D4FF']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        style={styles.profileContainer}>
+        <TouchableOpacity onPress={handleProfilePress}>
+          <FontAwesome6
+            name="angle-left"
+            size={25}
+            style={styles.styleProfile}
+          />
+        </TouchableOpacity>
+        <Text style={styles.txtHeadercolor}>Portfolio</Text>
+      </LinearGradient>
+    </View>
   );
 };
 

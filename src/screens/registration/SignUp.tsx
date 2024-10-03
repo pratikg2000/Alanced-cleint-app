@@ -180,8 +180,9 @@ const SignUp = () => {
               />
               <TextInput
                 placeholder="Enter First Name"
-                style={{width: '90%', fontSize: 18}}
+                style={{width: '90%', fontSize: 18, color: 'black'}}
                 value={first_Name}
+                placeholderTextColor="grey"
                 onChangeText={setFirst_Name}
               />
             </View>
@@ -198,8 +199,9 @@ const SignUp = () => {
               />
               <TextInput
                 placeholder="Enter Last Name"
-                style={{width: '90%', fontSize: 18}}
+                style={{width: '90%', fontSize: 18, color: 'black'}}
                 value={last_Name}
+                placeholderTextColor="grey"
                 onChangeText={setLast_Name}
               />
             </View>
@@ -216,8 +218,9 @@ const SignUp = () => {
               />
               <TextInput
                 placeholder="Enter Email"
-                style={{width: '90%', fontSize: 18}}
+                style={{width: '90%', fontSize: 18, color: 'black'}}
                 value={email}
+                placeholderTextColor="grey"
                 onChangeText={text => setEmail(text.toLowerCase())}
               />
             </View>
@@ -234,10 +237,11 @@ const SignUp = () => {
               />
             </TouchableOpacity>
             <TextInput
-              style={{width: '82%', fontSize: 18}}
+              style={{width: '82%', fontSize: 18, color: 'black'}}
               value={password}
               onChangeText={setPassword}
               placeholder="Enter password"
+              placeholderTextColor="grey"
               secureTextEntry={!isPasswordVisible}
             />
             <TouchableOpacity onPress={togglePasswordVisibility}>

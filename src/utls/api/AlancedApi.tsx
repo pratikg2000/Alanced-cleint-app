@@ -38,7 +38,4 @@ export const FREELANCER_REVIEW = baseURL + 'freelance/View-all/Review';
 export const FREELANCER_SELF_PROJECT =
   baseURL + 'freelance/View-all/Freelancer/Self-Project';
 
-// https://www.api.alanced.com/freelance/View-all/Freelancer/Self-Project/86?page=1
-
-// https://www.api.alanced.com/freelance/View-all/Freelancer/Employment/4
-// https://www.api.alanced.com/freelance/View-all/Review/4
+export const FREELANCER_HIRE = baseURL + 'freelance/hire';

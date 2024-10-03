@@ -62,8 +62,9 @@ const ResetPassword = ({navigation}) => {
             />
             <TextInput
               placeholder="Enter Email"
-              style={{width: '90%', fontSize: 18}}
+              style={{width: '90%', fontSize: 18, color: 'black'}}
               value={email}
+              placeholderTextColor="grey"
               onChangeText={text => setEmail(text.toLowerCase())}
               keyboardType="email-address"
             />

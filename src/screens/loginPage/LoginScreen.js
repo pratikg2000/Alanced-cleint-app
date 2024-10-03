@@ -56,7 +56,7 @@ const Login = ({navigation}) => {
 
     try {
       const response = await axios.post(LOGIN_URl, {email, password});
-      console.log(response);
+      console.log(response.data);
 
       if (
         response.status === 200 &&
@@ -123,10 +123,8 @@ const Login = ({navigation}) => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       await GoogleSignin.signOut();
-      console.log('User Info:', JSON.stringify(userInfo, null, 2));
 
       const email = userInfo.data.user.email;
-      console.log('User Email:', email);
 
       if (!email) {
         throw new Error('Email not available from Google Sign-In');
@@ -142,21 +140,22 @@ const Login = ({navigation}) => {
 
         const loginResponse = await axios.post(GOOGLE_LOGIN_URL, payload);
         const responseData = loginResponse.data;
-        console.log(responseData);
         const {access, refresh} = responseData.data.token;
 
         if (
-          response.status === 200 &&
-          response.data.message === 'Login Success'
+          loginResponse.status === 201 &&
+          responseData.message === 'Login Success'
         ) {
-          const {type, token} = response.data.data;
+          const {type, token} = responseData.data;
+          console.log('responseData.data', responseData.data);
 
           if (type === 'HIRER') {
             const {access, refresh} = token;
 
             if (access && refresh) {
+              console.log('hello');
               await storeTokens(access, refresh);
-
+              console.log('Navigating to HomeScreens');
               navigation.navigate('HomeScreens');
             } else {
               throw new Error('Token not found');
@@ -207,8 +206,9 @@ const Login = ({navigation}) => {
             />
             <TextInput
               placeholder="Enter Email"
-              style={{width: '90%', fontSize: 18}}
+              style={{width: '94%', fontSize: 18, color: 'black'}}
               value={email}
+              placeholderTextColor="grey"
               onChangeText={text => setEmail(text.toLowerCase())}
             />
           </View>
@@ -224,10 +224,11 @@ const Login = ({navigation}) => {
             />
           </TouchableOpacity>
           <TextInput
-            style={{width: '82%', fontSize: 18}}
+            style={{width: '82%', fontSize: 18, color: 'black'}}
             value={password}
             onChangeText={setPassword}
             placeholder="Enter password"
+            placeholderTextColor="grey"
             secureTextEntry={!isPasswordVisible}
           />
 
@@ -236,7 +237,7 @@ const Login = ({navigation}) => {
               name={isPasswordVisible ? 'eye-outline' : 'eye-off-outline'}
               color={'blue'}
               size={22}
-              style={{marginVertical: 14}}
+              style={{marginVertical: 14, paddingLeft: 8}}
             />
           </TouchableOpacity>
         </View>

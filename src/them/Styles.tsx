@@ -779,7 +779,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'white',
     // fontFamily: 'inter',,
-    marginTop: 14,
+    marginTop: 11,
+    marginLeft: 5,
   },
   nameContainer: {
     backgroundColor: 'rgba(246, 250, 253, 1)',
@@ -792,6 +793,7 @@ const styles = StyleSheet.create({
   },
   styleProfile: {
     padding: 13,
+    marginHorizontal: 5,
     color: 'white',
   },
   searchContainer: {
@@ -933,6 +935,7 @@ const styles = StyleSheet.create({
   pickerstyle: {
     borderWidth: 1,
     backgroundColor: 'white',
+    color: 'black',
   },
   txtCategory: {
     fontSize: 18,
@@ -942,6 +945,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'black',
     fontWeight: '500',
+    // paddingHorizontal: 20,
+  },
+  txtCategoryLinerCancel: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: '500',
+    paddingHorizontal: 20,
   },
   txtCategoryLinerBack: {
     fontSize: 18,
@@ -1030,6 +1040,15 @@ const styles = StyleSheet.create({
     padding: 5,
     // fontFamily: 'inter',,
     marginHorizontal: 11,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  txtSaveHire: {
+    fontSize: 18,
+    color: 'white',
+    padding: 5,
+    // fontFamily: 'inter',,
+    marginHorizontal: 25,
     textAlign: 'center',
     fontWeight: '500',
   },
@@ -1232,6 +1251,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
     width: '100%',
+    // height: '100%',
   },
   viewOuterContaineSegmented: {
     backgroundColor: 'white',
@@ -1965,20 +1985,62 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 10,
   },
-  // imageStylePortfolio: {
-  //   width: 200,
-  //   height: 150,
-  //   // borderRadius: 50,
-  //   // marginHorizontal: 10,
-  //   // alignContent: 'center',
-  //   alignItems: 'center',
-  // },
+
   imageStylePortfolio: {
     width: '100%',
     height: 250,
     alignSelf: 'center', // This will center the image horizontally
     resizeMode: 'cover', // Ensures the image covers the container completely
     borderRadius: 20,
+  },
+  dropdownButtonStyle: {
+    width: '100%',
+    height: 50,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    // marginVertical: 3,
+    borderColor: '#CCC',
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#151E26',
+  },
+  dropdownButtonArrowStyle: {
+    fontSize: 28,
+  },
+  dropdownButtonIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
+  dropdownMenuStyle: {
+    backgroundColor: '#E9ECEF',
+    borderRadius: 8,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  dropdownItemTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    marginVertical: 5,
+    fontWeight: '500',
+    color: '#151E26',
+  },
+  dropdownItemIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
   },
 });
 

@@ -703,7 +703,7 @@ const FindTalent = () => {
 
   const handleReload = () => {
     setError(null);
-    setLoading(true);
+    // setLoading(true);
     setPage(1);
     fetchViewAllProject(
       1,
@@ -745,6 +745,13 @@ const FindTalent = () => {
   const DetailsNavigation = item => {
     console.log('id', item.id);
     navigation.navigate('ViewDetails', {
+      id: item.id,
+    });
+  };
+
+  const HireNavigationPage = item => {
+    console.log('id', item.id);
+    navigation.navigate('HirePage', {
       id: item.id,
     });
   };
@@ -836,7 +843,9 @@ const FindTalent = () => {
                     </Text>
                   </TouchableOpacity>
                 </LinearGradient>
-                <TouchableOpacity style={styles.touchbtnLiner}>
+                <TouchableOpacity
+                  style={styles.touchbtnLiner}
+                  onPress={() => HireNavigationPage(item)}>
                   <LinearGradient
                     colors={['#0909E9', '#00D4FF']}
                     start={{x: 0, y: 0}}

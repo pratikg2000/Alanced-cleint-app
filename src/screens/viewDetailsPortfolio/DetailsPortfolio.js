@@ -10,7 +10,8 @@ import {
 import React, {useEffect, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from '../../them/Styles';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 const DetailsPortfolio = () => {
   const route = useRoute();
@@ -31,7 +32,7 @@ const DetailsPortfolio = () => {
     }
   };
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: 'white', height: '100%'}}>
       <View style={styles.viewOuterContainer}>
         <LinearGradient
           colors={['#0909E9', '#00D4FF']}
@@ -130,12 +131,37 @@ const DetailsPortfolio = () => {
                 </Text>
               </TouchableOpacity>
             ) : (
-              <Text style={{color: '#47515e', fontWeight: '500'}}>NA</Text> // Display 'NA' if link is not available
+              <Text style={{color: '#47515e', fontWeight: '500'}}>NA</Text>
             )}
           </View>
         </LinearGradient>
       </View>
     </ScrollView>
+  );
+};
+
+DetailsPortfolio.Header = () => {
+  const navigation = useNavigation();
+  handleProfilePress = () => {
+    navigation.goBack();
+  };
+  return (
+    <View style={styles.profileContainer}>
+      <LinearGradient
+        colors={['#0909E9', '#00D4FF']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        style={styles.profileContainer}>
+        <TouchableOpacity onPress={handleProfilePress}>
+          <FontAwesome6
+            name="angle-left"
+            size={25}
+            style={styles.styleProfile}
+          />
+        </TouchableOpacity>
+        <Text style={styles.txtHeadercolor}>Details</Text>
+      </LinearGradient>
+    </View>
   );
 };
 

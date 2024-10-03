@@ -15,6 +15,7 @@ import ViewProposal from '../screens/allJobsInvitedContacts/ViewProposal';
 import ResetPassword from '../screens/resetPassword/ResetPassword';
 import ViewDetails from '../screens/details/ViewDetails';
 import DetailsPortfolio from '../screens/viewDetailsPortfolio/DetailsPortfolio';
+import HirePage from '../screens/hire/HirePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,12 +80,17 @@ const ClientNavigation = () => {
       <Stack.Screen
         name="ViewDetails"
         component={ViewDetails}
-        // options={{headerShown: false}}
+        options={{header: () => <ViewDetails.Header />}}
       />
       <Stack.Screen
         name="DetailsPortfolio"
         component={DetailsPortfolio}
-        // options={{headerShown: false}}
+        options={{header: () => <DetailsPortfolio.Header />}}
+      />
+      <Stack.Screen
+        name="HirePage"
+        component={HirePage}
+        options={{header: () => <HirePage.Header />}}
       />
     </Stack.Navigator>
   );
