@@ -141,8 +141,11 @@ const AddPostFifthPage = () => {
               borderWidth: 1,
               marginTop: 10,
               borderColor: 'rgb(210, 212, 233)',
+              paddingHorizontal: 10,
+              color: 'black',
             }}
             placeholder="dd-mm-yyyy"
+            placeholderTextColor="grey"
             keyboardType="numeric"
             onChangeText={formatDateInput}
             value={deadline}

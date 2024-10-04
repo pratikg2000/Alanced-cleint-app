@@ -1895,6 +1895,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     fontSize: 18,
+    color: 'black',
   },
   multicontainer: {
     flex: 1,

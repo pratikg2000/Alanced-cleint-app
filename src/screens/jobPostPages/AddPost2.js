@@ -72,7 +72,8 @@ const AddPostSecondPage = () => {
             <TextInput
               style={styles.textInput}
               multiline={true}
-              numberOfLines={6} // Adjusted for better visibility of the input field
+              numberOfLines={6}
+              placeholderTextColor="grey"
               placeholder="Write Your Job Description Here"
               onChangeText={text => setdescription(text)}
               value={description}

@@ -104,7 +104,7 @@ const AddPostThirdPage = ({navigation}) => {
       <View style={styles.multicontainer}>
         <Text style={styles.txtDaySkills}>Select Multiple Items</Text>
         <TextInput
-          placeholder="Search..."
+          placeholder="Search language"
           placeholderTextColor={'grey'}
           value={searchQuery}
           onChangeText={setSearchQuery}

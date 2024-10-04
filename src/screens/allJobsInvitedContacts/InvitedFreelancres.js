@@ -34,7 +34,7 @@ const InvitedFreelancer = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          timeout: 3000,
+          timeout: 10000,
         },
       );
 
@@ -144,6 +144,10 @@ const InvitedFreelancer = () => {
     <View>
       {loading && pageNumber === 1 ? (
         <ActivityIndicator size="large" color="#0000ff" />
+      ) : data.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>No projects found</Text>
+        </View>
       ) : (
         <FlatList
           data={data}
