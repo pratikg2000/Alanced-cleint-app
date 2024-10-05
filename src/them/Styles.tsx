@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'rgba(10, 20, 47, 1)',
     // textAlign: 'center',
-    marginHorizontal: 5,
+    // marginHorizontal: 5,
     marginTop: 10,
     // fontFamily: 'inter',,
   },
@@ -923,6 +923,12 @@ const styles = StyleSheet.create({
     color: 'rgba(10, 20, 47, 1)',
     // margin: 7,
     marginVertical: 7,
+  },
+  txtpaymentProfile: {
+    fontSize: 16,
+    color: 'rgba(10, 20, 47, 1)',
+    marginVertical: 7,
+    // marginHorizontal: 5,
   },
   txtLoaction: {
     fontSize: 16,
@@ -1998,7 +2004,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -2042,6 +2048,13 @@ const styles = StyleSheet.create({
   dropdownItemIconStyle: {
     fontSize: 28,
     marginRight: 8,
+  },
+  txtcolorSave: {
+    color: 'white',
+    paddingVertical: 10,
+    padding: 1,
+    fontSize: 18,
+    paddingHorizontal: 40,
   },
 });
 

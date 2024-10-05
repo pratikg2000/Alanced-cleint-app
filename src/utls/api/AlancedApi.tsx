@@ -39,3 +39,8 @@ export const FREELANCER_SELF_PROJECT =
   baseURL + 'freelance/View-all/Freelancer/Self-Project';
 
 export const FREELANCER_HIRE = baseURL + 'freelance/hire';
+
+export const CLIENT_ACCOUNT_SELFPROFILE =
+  baseURL + 'account/hirer/selfprofile/view';
+
+export const CLIENT_PROFILE_UPDATE = baseURL + 'account/hirer/profile/update';

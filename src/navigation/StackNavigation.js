@@ -16,6 +16,10 @@ import ResetPassword from '../screens/resetPassword/ResetPassword';
 import ViewDetails from '../screens/details/ViewDetails';
 import DetailsPortfolio from '../screens/viewDetailsPortfolio/DetailsPortfolio';
 import HirePage from '../screens/hire/HirePage';
+import ProfilePage from '../screens/profiledata/Profile/ProfilePage';
+import EditAccount from '../screens/profiledata/account/EditAccount';
+import EditCompanyDetailsPage from '../screens/profiledata/editcompanyDetails/EditCompanyDetailsPage';
+import EditCompanyContactsPage from '../screens/profiledata/editCompanyContacts/EditCompanyContactsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -91,6 +95,26 @@ const ClientNavigation = () => {
         name="HirePage"
         component={HirePage}
         options={{header: () => <HirePage.Header />}}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfilePage}
+        options={{header: () => <ProfilePage.Header />}}
+      />
+      <Stack.Screen
+        name="EditAccount"
+        component={EditAccount}
+        options={{header: () => <ProfilePage.Header />}}
+      />
+      <Stack.Screen
+        name="EditCompanyDetailsPage"
+        component={EditCompanyDetailsPage}
+        options={{header: () => <ProfilePage.Header />}}
+      />
+      <Stack.Screen
+        name="EditCompanyContactsPage"
+        component={EditCompanyContactsPage}
+        options={{header: () => <ProfilePage.Header />}}
       />
     </Stack.Navigator>
   );
